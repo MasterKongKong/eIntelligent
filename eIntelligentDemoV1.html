@@ -1,0 +1,881 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="Scripts/highslide.css" />
+    <link href="Scripts/DimercoUI/css/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/DimercoUI/ShipmentFM.js"></script>
+    <script src="Scripts/highcharts.js"></script>
+    <script src="Scripts/LigerUI3.3/js/core/base.js"></script>
+    <script src="Scripts/LigerUI3.3/js/plugins/ligerDialog.js"></script>
+    <script src="Scripts/DimercoUI/js/bootstrap.min.js"></script>
+    <link href="Scripts/DimercoUI/css/eIntelligent.css" rel="stylesheet" />
+    <script src="Scripts/DimercoUI/Expjs.js"></script>
+    <script src="Scripts/DimercoUI/DashTablejs.js"></script>
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_one"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="header_EI">
+        <div class="logo_EI">
+            <span>e-Intelligent</span>
+        </div>
+        <div class="user_EI">
+            <span></span>
+        </div>
+        <div class="stationList_EI">
+            <select id="stationList"></select>
+        </div>
+        <div class="countryList_EI">
+            <select id="countryList"></select>
+        </div>
+        <div class="regionList_EI">
+            <select id="regionList"></select>
+        </div>
+        <ul id="myTab" class="nav nav-tabs" style="position:absolute;left:10px;bottom:0px;">
+            <li class="active"><a href="#dash" data-toggle="tab">DASHBOARD</a></li>
+            <li><a href="#exp" data-toggle="tab">EXPLORE</a></li>
+            <li><a href="#com" data-toggle="tab">COMPARE</a></li>
+        </ul>
+    </div>
+    <div class="mainframe_EI">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active " id="dash">
+                <div class="panel-body divborder">
+                    <div class="Revenue_left">
+                        <div id="tonnagecrpchart" style="min-width: 400px; height: 365px;max-width:95%; margin: 0 auto"></div>
+                    </div>
+                    <div class="Revenue_right">
+                        <div>
+                            <div class="top"><span>Total Revenue</span></div>
+                            <div class="numberstyle"><span>335,948,489</span></div>
+                            <div class="currency"><span>USD</span></div>
+                        </div>
+                        <div>
+                            <select>
+                                <option selected=selected value="Year to Date">Year to Date</option>
+                                <option value="This month">This month</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select>
+                                <option selected=selected value="Revenue">Revenue</option>
+                                <option value="GP">GP</option>
+                                <option value="NP (b4 Tax)">NP (b4 Tax)</option>
+                            </select>
+                        </div>
+                        <div class="revenue_option">
+                            <div class="option_title"><span>Compare With</span></div>
+                            <div>
+                                <!--<div><input type="checkbox" checked="checked" value="This year budget" /><span>This year budget</span></div>-->
+                                <label class="cursorclass">
+                                    <input type="checkbox" id="rbtnSpeY" value="Y" checked="checked" class="radiobtn" /> This year budget
+                                </label>
+                            </div>
+                            <div>
+                                <label class="cursorclass">
+                                    <input type="checkbox" id="rbtnSpeY" value="Y" checked="checked" class="radiobtn" /> Last year actual
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body divborder">
+                    <div class="datascope">
+                        <div><span>Data Scope:</span></div>
+                        <select>
+                            <option selected=selected>Last Month</option>
+                            <option>Last 3 Months</option>
+                            <option>Last 6 Months</option>
+                            <option>Last 12 Months</option>
+                        </select>
+                    </div>
+                    <div class="NP_module">
+                        <div class="NP_region"><span>ALL</span></div>
+                        <div class="NP_region"><span>NAR</span></div>
+                        <div class="NP_region"><span>EUR</span></div>
+                        <div class="NP_region"><span>SER</span></div>
+                        <div class="NP_region"><span>GCR</span></div>
+                        <div class="NP_region_Last"><span>NER</span></div>
+                    </div>
+                    <div class="NP_moduleper">
+                        <div class="NP_modulepersub">
+                            <div class="NP_num"><span>18</span></div>
+                            <div class="NP_text"><span>NP&lt;0<br />Underperformed &amp; Loss</span></div>
+                        </div>
+                        <div class="NP_modulepersub">
+                            <div class="NP_num"><span>18</span></div>
+                            <div class="NP_text"><span>NP&lt;0<br />Fair performed</span></div>
+                        </div>
+                        <div class="NP_modulepersub last">
+                            <div class="NP_num"><span>18</span></div>
+                            <div class="NP_text"><span>NP&lt;0<br />Outperform</span></div>
+                        </div>
+                    </div>
+                    <div class="NP_moduleper1">
+                        <div class="NP_agent"><span>Single customer / CRP agent > 30%</span></div>
+                        <div class="NP_agent"><span>Single customer / CRP agent < 30%</span></div>
+                    </div>
+                    <div id="tonnagestationchart" style="min-width: 400px; height: 365px;max-width:95%; margin: 0 auto"></div>
+                </div>
+                
+                <div class="panel-body divborder">
+                    <div>
+                        <div class="Shipment_left">
+                            <div>
+                                <span>No of Shipment</span>
+                            </div>
+                            <div>
+                                <span>Tonnage/Volume</span>
+                            </div>
+                            <div>
+                                <span>Sales</span>
+                            </div>
+                            <div>
+                                <span>GP</span>
+                            </div>
+
+                        </div>
+                        <div class="Shipment_center">
+                            <div>
+                                <div class="subTab">
+                                    <div class="sublist">
+                                        <div>
+                                            <span>AE</span>
+                                        </div>
+                                        <div>
+                                            <span>AI</span>
+                                        </div>
+                                        <div>
+                                            <span>OE-FCL</span>
+                                        </div>
+                                        <div>
+                                            <span>OE-LCL</span>
+                                        </div>
+                                        <div>
+                                            <span>OI-FCL</span>
+                                        </div>
+                                        <div>
+                                            <span>OI-LCL</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="subTab unshown">
+                                    <div class="sublist">
+                                        <div>
+                                            <span>AE(Kg)</span>
+                                        </div>
+                                        <div>
+                                            <span>AI(Kg)</span>
+                                        </div>
+                                        <div>
+                                            <span>OE-FCL(TEU)</span>
+                                        </div>
+                                        <div>
+                                            <span>OE-LCL(CBM)</span>
+                                        </div>
+                                        <div>
+                                            <span>OI-FCL(TEU)</span>
+                                        </div>
+                                        <div>
+                                            <span>OI-LCL(CBM)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div id="shipmentChart" style="min-width: 400px; height: 350px; margin: 0 auto"></div>
+                            </div>
+                        </div>
+                        <div class="Shipment_right">
+                            <div class="irr">
+                                <div class="irr_no">
+                                    <span>2</span>
+                                </div>
+                                <div class="irr_info">
+                                    <div class="irr_info1">
+                                        <span>IRREGULARITY LOTS</span>
+                                    </div>
+                                    <div class="irr_info2">
+                                        <span>View More >>></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lot">
+                                <div class="title">
+                                    Sourse of  Lots  ( Closed / Total )
+                                </div>
+                                <div class="lot_detail">
+                                    <div class="lot_model">
+                                        <div class="first">
+                                            <span>AE 13.64%</span>
+                                        </div>
+                                        <div>
+                                            <span>120/880</span>
+                                        </div>
+                                    </div>
+                                    <div class="lot_model">
+                                        <div class="first">
+                                            <span>AI  13.64%</span>
+                                        </div>
+                                        <div>
+                                            <span>120/880</span>
+                                        </div>
+                                    </div>
+                                    <div class="lot_model last">
+                                        <div class="first">
+                                            <span>OE  13.64%</span>
+                                        </div>
+                                        <div>
+                                            <span>120/880</span>
+                                        </div>
+                                    </div>
+                                    <div class="lot_model">
+                                        <div class="first">
+                                            <span>OI  13.64%</span>
+                                        </div>
+                                        <div>
+                                            <span>120/880</span>
+                                        </div>
+                                    </div>
+                                    <div class="lot_model">
+                                        <div class="first">
+                                            <span>3P  13.64%</span>
+                                        </div>
+                                        <div>
+                                            <span>120/880</span>
+                                        </div>
+                                    </div>
+                                    <div class="lot_model last">
+                                        <div class="first">
+                                            <span>CC  13.64%</span>
+                                        </div>
+                                        <div>
+                                            <span>120/880</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="closelot">
+                                <div class="title">
+                                    <div>% of Closed Lot</div>
+                                </div>
+                                <div class="detail">
+                                    <div class="detail_1">
+                                        <div>
+                                            AE
+                                        </div>
+                                        <div class="detail_2">
+                                            88%
+                                        </div>
+                                    </div>
+                                    <div class="detail_1">
+                                        <div>
+                                            AI
+                                        </div>
+                                        <div class="detail_2">
+                                            88%
+                                        </div>
+                                    </div>
+                                    <div class="detail_1">
+                                        <div>
+                                            OE
+                                        </div>
+                                        <div class="detail_2">
+                                            88%
+                                        </div>
+                                    </div>
+                                    <div class="detail_1">
+                                        <div>
+                                            OI
+                                        </div>
+                                        <div class="detail_2">
+                                            88%
+                                        </div>
+                                    </div>
+                                    <div class="detail_1">
+                                        <div>
+                                            3P
+                                        </div>
+                                        <div class="detail_2">
+                                            88%
+                                        </div>
+                                    </div>
+                                    <div class="detail_1">
+                                        <div>
+                                            CC
+                                        </div>
+                                        <div class="detail_2">
+                                            88%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="poplot">
+                                <div class="closebtn">
+                                    <span>x</span>
+                                </div>
+                                <div class="title">
+                                    <div class="title1">
+                                        <span>GP&lt;0</span>
+                                    </div>
+                                    <div class="title2">
+                                        <span>2</span>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <ul>
+                                        <li>AE: 09150003: -USD150.00</li>
+                                        <li>AE: 09150004: -USD250.00</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="exp">
+                
+            </div>
+            <div class="tab-pane fade" id="com">
+
+            </div>
+
+        </div>
+        <!--<div style="font: 0px/0px sans-serif;clear: both;display: block"> </div>-->
+    </div>
+    <script type="text/javascript">
+
+        var crplist,regionlist, countrylist, stationlist;//存儲list數據
+        var uid;
+        $(function () {
+            //160928 Andy Kang,载入Explore页面代码文件
+            var expobj = $.ajax({ url: "/Scripts/DimercoUI/Exphtml.js", async: false });
+            $("#exp").append(expobj.responseText);
+
+
+
+
+            //160928 Andy Kang,载入Dashboard-PROFIT & LOSS PROJECTION页面代码文件
+            var dashtableobj = $.ajax({ url: "/Scripts/DimercoUI/DashTablehtml.js", async: false });
+            $("#dash").append(dashtableobj.responseText);
+            var myDate = new Date();
+            var PLPara = {
+                _UserID: "A0001",
+                _Year: myDate.getFullYear().toString()
+            };
+            
+            GetPLData(PLPara);//载入数据,DashTablejs.js
+            CreateSparkLine();//绘制缩微图,DashTablejs.js
+            SelectYear();//切换年份时间,DashTablejs.js
+            //160928 Andy Kang,载入Dashboard-PROFIT & LOSS PROJECTION页面代码文件
+
+
+
+
+            //160927 Andy Kang 载入等待
+            $("#loading-center").click(function () {
+                $("#loading").fadeOut(500);
+            })
+
+
+            //登录权限
+            //jQuery.support.cors = true;
+            uid = 'A0001';
+            
+            $.ajax({
+                url: "api/DimercoBO.eIntelligent/DimercoBO.eIntelligent/eIntelligentService/GetUserRight",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: uid,
+                async: false,
+                timeout: 3000,
+                success: function (n) {
+                    if (n.hasOwnProperty("sourceException")) {
+                        alert(JSON.stringify(n));
+                        return;
+                    }
+                    //取得用户区域列表权限
+                    function GetUserRightList() {
+                        $.ajax({
+                            url: "api/DimercoBO.eIntelligent/DimercoBO.eIntelligent/eIntelligentService/GetMenuListOfUser2",
+                            type: "POST",
+                            dataType: "json",
+                            contentType: "application/json",
+                            data: uid,
+                            async: false,
+                            timeout: 3000,
+                            success: function (n) {
+                                if (n.hasOwnProperty("sourceException")) {
+                                    alert(n);
+                                    return;
+                                }
+                                crplist = $.grep(n, function (value) {
+                                    return value._type == "CRP";
+                                });
+                                regionlist = $.grep(n, function (value) {
+                                    return value._type == "R";
+                                });
+                                countrylist = $.grep(n, function (value) {
+                                    return value._type == "C" || value._type == "D";
+                                });
+                                stationlist = $.grep(n, function (value) {
+                                    return value._type == "S";
+                                });
+                            },
+                            error: function (en) {
+                                alert(en);
+                            }
+                        });
+                        LoadUserInfo(n);
+                    }
+                    GetUserRightList();
+                    //取得用户区域列表权限
+
+                    
+
+
+                    //$.ajax({
+                    //    url: "api/DimercoBO.eIntelligent/DimercoBO.eIntelligent/Service/GetMenuListOfUser2",
+                    //    type: "POST",
+                    //    dataType: "json",
+                    //    contentType: "application/json",
+                    //    data: uid,
+                    //    async: false,
+                    //    timeout: 3000,
+                    //    success: function (n) {
+                    //        if (n.hasOwnProperty("sourceException")) {
+                    //            alert(n);
+                    //            return;
+                    //        }
+                    //        regionlist = $.grep(n, function (value) {
+                    //            return value._type == "R";
+                    //        })
+                    //        countrylist = $.grep(n, function (value) {
+                    //            return value._type == "C" || value._type == "D";
+                    //        })
+                    //        stationlist = $.grep(n, function (value) {
+                    //            return value._type == "S";
+                    //        })
+                    //    },
+                    //    error: function (en) {
+                    //        alert(en);
+                    //    }
+                    //});
+                    //LoadUserInfo(n);
+                },
+                error: function (n) {
+                    alert(JSON.stringify(n));
+                }
+            });
+            //登录
+            //Region List變化事件
+            $('#regionList').change(function () {
+                var a = $(this);
+                var pid = $.grep(regionlist, function (value) {
+                    return value._MenuText == a.val();
+                });
+                $('#countryList').empty();
+                $('#countryList').append('<option selected=selected>Country/District</option>');
+                $('#stationList').empty();
+                $('#stationList').append('<option selected=selected>Station</option>');
+                if (a.get(0).selectedIndex == 0) {
+                    //for (var n in countrylist) {
+                    //    $('#countryList').append('<option>' + countrylist[n]._MenuText + '</option>');
+                    //}
+                }
+                else {
+                    var filterarray = $.grep(countrylist, function (value) {
+                        return value._PID == pid[0]._HQID;
+                    });
+                    for (var n in filterarray) {
+                        $('#countryList').append('<option>' + filterarray[n]._MenuText + '</option>');
+                    }
+                }
+                $('#loading').show();
+                //$("#loading").fadeOut(2000);
+            });
+            //Country List變化事件
+            $('#countryList').change(function () {
+                var a = $(this);
+                var pid = $.grep(countrylist, function (value) {
+                    return value._MenuText == a.val();
+                });
+                $('#stationList').empty();
+                $('#stationList').append('<option selected=selected>Station</option>');
+                if (a.get(0).selectedIndex == 0) {
+                    //for (var n in countrylist) {
+                    //    $('#countryList').append('<option>' + countrylist[n]._MenuText + '</option>');
+                    //}
+                }
+                else {
+                    var filterarray = $.grep(stationlist, function (value) {
+                        return value._PID == pid[0]._HQID && value._RegionID == pid[0]._PID;
+                    });
+                    for (var n in filterarray) {
+                        $('#stationList').append('<option>' + filterarray[n]._MenuText + '</option>');
+                    }
+                }
+                $('#loading').show();
+                //$("#loading").fadeOut(2000);
+            });
+
+            //生成TonnageChart
+            var TonnageCRPchart = $('#tonnagecrpchart').highcharts({
+                xAxis: [{
+                    categories: ['NAR', 'EUR', 'SER', 'GCR', 'NER'],
+                    crosshair: true,
+                    opposite: true
+                }],
+                legend: {
+                    layout: 'horizontal',
+                    floating: false,
+                    verticalAlign: 'bottom',
+                    x: 80,
+                    borderWidth: 1,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                },
+                series: [{
+                    name: 'This Year Revenue',
+                    type: 'column',
+                    data: [499.9, 771.5, 1006.4, 1209.2, 1414.0]
+
+                }, {
+                    name: 'Last Year Actual',
+                    type: 'spline',
+                    data: [200, 1016, 400.5, 1009.6, 700.2],
+                    marker: {
+                        enabled: true
+                    },
+                    lineWidth: 0,//线的宽度 0表示透明
+                    //dashStyle: 'Dash',
+                    tooltip: {
+                        //valueSuffix: ' mb'
+                    }
+
+                }, {
+                    name: 'This Year Budget',
+                    type: 'spline',
+                    data: [1017.0, 446.9, 321.5, 225.2, 1126.5],
+                    lineWidth: 0,//线的宽度
+                    //dashStyle: 'Dash',
+                    tooltip: {
+                        //valueSuffix: ' °C'
+                    }
+                }]
+            });
+            var TonnageStationchart = $('#tonnagestationchart').highcharts({
+                //title: {
+                //    text: 'Average Monthly Weather Data for Tokyo'
+                //},
+                yAxis: {
+                    labels: {
+                        format: '{value} %'
+                    }
+                },
+                xAxis: [{
+                    categories: ['ZJDTSN', 'ZJDBJS', 'DFSTSN', 'DIMSIA', 'ZJDTAO'],
+                    crosshair: true,
+                    opposite: true
+                }],
+                series: [{
+                    name: 'Sales %',
+                    type: 'column',
+                    data: [30, 27, 10, 20, 25],
+                    tooltip: {
+                        valueSuffix: ' %'
+                    }
+                }]
+            });
+
+            //var chart = $('#container').highcharts();
+            //$("#cbxTYB").click(function () {
+            //    var series = chart.series[1];
+            //    if (series.visible) {
+            //        series.hide();
+            //        // $(this).val('Show');
+            //    } else {
+            //        series.show();
+            //        // $(this).val('Hide');
+            //    }
+
+            //});
+
+            //$("#cbxLYA").click(function () {
+            //    var series = chart.series[2];
+            //    if (series.visible) {
+            //        series.hide();
+            //        // $(this).val('Show');
+            //    } else {
+            //        series.show();
+            //        // $(this).val('Hide');
+            //    }
+
+            //});
+
+            //$("#btnReload").click(function () {
+
+            //    var s = [1016, 400, 1009.5, 600, 1010.2];
+            //    if ($(this).val() == "Reload1") {
+            //        chart.series[1].setData(s);
+            //        $(this).val('Reload2');
+            //    }
+            //    else {
+            //        chart.series[1].setData([1029.2, 144.0, 300.0, 135.6, 500.5]);
+            //        $(this).val('Reload1');
+            //    }
+            //});
+
+            
+
+            var shipmentchart = $('#shipmentChart').highcharts({
+                chart: {
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: 'No of Shipment',
+                    style: {
+                        fontWeight: 'bold'
+                    }
+                },
+                subtitle: {
+                    text: '2014 Oct- 2015 Sep',
+                    style: {
+                        fontWeight: 'bold'
+                    }
+                },
+                xAxis: [{
+                    categories: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                    crosshair: true,
+                    opposite: false
+                }],
+                yAxis: [{ // Primary yAxis
+                    labels: {
+                        format: '{value}',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    title: {
+                        text: 'No Of Shipment',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    opposite: false
+
+                }, { // Secondary yAxis
+                    gridLineWidth: 0,
+                    title: {
+                        text: '',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    labels: {
+                        format: '{value} mm',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    }
+
+                }, { // Tertiary yAxis
+                    gridLineWidth: 0,
+                    title: {
+                        text: '',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    opposite: true
+
+                }],
+                tooltip: {
+                    shared: true
+                },
+                legend: {
+                    align: 'left',
+                    layout: 'vertical',
+                    floating: true,
+                    verticalAlign: 'top',
+                    x: 80,
+                    borderWidth: 1,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                },
+                series: [{
+                    name: 'This Year Actual',
+                    type: 'column',
+                    data: [29, 31, 30, 23, 35, 26, 15, 21, 20, 25, 17, 19]
+
+                }, {
+                    name: 'Last Year Actual',
+                    type: 'spline',
+                    data: [16, 9, 34, 22, 29, 33, 24, 36, 38, 7, 18, 8],
+                    marker: {
+                        enabled: true
+                    },
+                    lineWidth: 1,//线的宽度 0表示透明
+                    dashStyle: 'Dash'
+                    //tooltip: {
+                    //    valueSuffix: ' mb'
+                    //}
+
+                }, {
+                    name: 'This Year Budget',
+                    type: 'spline',
+                    data: [37, 18, 24, 13, 20, 23, 38, 34, 7, 9, 32, 22],
+                    lineWidth: 1//线的宽度
+                    //dashStyle: 'Dash',
+                }]
+            });
+        });
+        //160705 Andy Kang,载入下拉菜单
+        function LoadUserInfo(user) {
+
+            if (user.length < 1) {
+                alert("Data error."); return false;
+            }
+            var userinfo = user[0];
+            //更新登陸人員姓名
+            $('span', '.user_EI').html(userinfo._UserName);
+            //
+            var r_o = $.grep(regionlist, function (value) {
+                return value._own == 1;
+            });
+            var r_no = $.grep(regionlist, function (value) {
+                return value._own == 2;
+            });
+            var c_o = $.grep(countrylist, function (value) {
+                return value._own == 1;
+            });
+            var c_no = $.grep(countrylist, function (value) {
+                return value._own == 2;
+            });
+            var s_o = $.grep(stationlist, function (value) {
+                return value._own == 1;
+            });
+            if (r_o.length > 0) {
+                //CRP权限,载入全部列表
+                if (r_o.length == 5) {
+                    $('#regionList').append('<option selected=selected>Dimerco Express Group</option>');
+                }
+                for (var a in r_o) {
+                    $('#regionList').append('<option>' + r_o[a]._MenuText + '</option>');
+                }
+                $('#countryList').append('<option selected=selected>Country/District</option>');
+                if (r_o.length != 5) {
+
+                    $('#regionList').val(userinfo._RegionCode);
+                    var pid = $.grep(regionlist, function (value) {
+                        return value._MenuText == userinfo._RegionCode;
+                    });
+                    var filterarray = $.grep(c_o, function (value) {
+                        return value._PID == pid[0]._HQID;
+                    });
+                    for (var n in filterarray) {
+                        $('#countryList').append('<option>' + filterarray[n]._MenuText + '</option>');
+                    }
+                }
+                //载入Station List
+                $('#stationList').append('<option selected=selected>Station</option>');
+
+            }
+            else {
+                for (var a in r_no) {
+                    $('#regionList').append('<option>' + r_no[a]._MenuText + '</option>');
+                }
+                //$("#regionList").get(0).selectedIndex = 0;
+                //$('#regionList').append('<option selected=selected>' + userinfo._RegionCode + '</option>');
+
+                if (c_o.length > 0) {
+                    for (var a in c_o) {
+                        $('#countryList').append('<option>' + c_o[a]._MenuText + '</option>');
+                    }
+                    $('#countryList').val(userinfo._CountryCode);
+                    $('#regionList').val(userinfo._RegionCode);
+                    $('#stationList').append('<option selected=selected>Station</option>');
+
+                    var pid = $.grep(countrylist, function (value) {
+                        return value._MenuText == userinfo._CountryCode;
+                    });
+                    var filterarray = $.grep(s_o, function (value) {
+                        return value._PID == pid[0]._HQID;
+                    });
+                    for (var n in filterarray) {
+                        $('#stationList').append('<option>' + filterarray[n]._MenuText + '</option>');
+                    }
+                    //var pid = $.grep(regionlist, function (value) {
+                    //    return value._MenuText == userinfo._RegionCode;
+                    //});
+                    //var filterarray = $.grep(countrylist, function (value) {
+                    //    return value._PID == pid[0]._HQID;
+                    //});
+                    //for (var n in filterarray) {
+                    //    $('#countryList').append('<option>' + filterarray[n]._MenuText + '</option>');
+                    //}
+
+                    //载入Station List
+
+
+                }
+                else {
+                    //for (var a in r_no) {
+                    //    $('#regionList').append('<option>' + r_no[a]._MenuText + '</option>');
+                    //}
+                    for (var a in c_no) {
+                        $('#countryList').append('<option>' + c_no[a]._MenuText + '</option>');
+                    }
+                    for (var a in s_o) {
+                        $('#stationList').append('<option>' + s_o[a]._MenuText + '</option>');
+                    }
+                    $('#stationList').val(userinfo._StationCode);
+                    $('#countryList').val(userinfo._CountryCode);
+                    $('#regionList').val(userinfo._RegionCode);
+
+
+                    ////載入本人所屬Country/District
+                    //$('#countryList').append('<option selected=selected>' + userinfo._CountryCode + '</option>');
+                    //if (userinfo._StationLevelRight == 1) {
+                    //    //载入Station List
+                    //    $('#stationList').append('<option selected=selected>Station</option>');
+
+                    //    var pid = $.grep(countrylist, function (value) {
+                    //        return value._MenuText == userinfo._CountryCode;
+                    //    });
+                    //    var filterarray = $.grep(stationlist, function (value) {
+                    //        return value._PID == pid[0]._HQID && value._RegionID == pid[0]._PID;
+                    //    });
+                    //    for (var n in filterarray) {
+                    //        $('#stationList').append('<option>' + filterarray[n]._MenuText + '</option>');
+                    //    }
+                    //}
+                    //else {
+                    //    //載入本人所屬Station
+                    //    $('#stationList').append('<option selected=selected>' + userinfo._StationCode + '</option>');
+                    //}
+                }
+            }
+        }
+    </script>
+</body>
+</html>
